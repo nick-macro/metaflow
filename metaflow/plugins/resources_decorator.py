@@ -32,6 +32,11 @@ class ResourcesDecorator(StepDecorator):
     shared_memory : int, optional, default None
         The value for the size (in MiB) of the /dev/shm volume for this step.
         This parameter maps to the `--shm-size` option in Docker.
+    ephemeral_storage : int, optional default None
+        The total amount, in GiB, of ephemeral storage to set for the task, 21-200GiB. 
+        This is only relevant for Fargate compute environments with batch.
+        If `@resources` is also present, the maximum value from all decorators is used.
+
     """
 
     name = "resources"
@@ -41,4 +46,5 @@ class ResourcesDecorator(StepDecorator):
         "disk": None,
         "memory": "4096",
         "shared_memory": None,
+        "ephemeral_storage": None,
     }
